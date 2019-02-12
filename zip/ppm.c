@@ -39,7 +39,18 @@ void asciiRead (ppm * img, FILE * source) {
 
 void binaryRead(ppm * img, FILE * source) {
     //Reading ppm contents
-    fread(img->imgArr[0], sizeof(RGB), img->numRows * img->numCols, source);
+    fread(img->imgArr[0], sizeof(RGB), img->numRows*img->numCols, source);
+    printf("stored in memory\n");
+
+    for(int i=0; i<img->numRows; i++)
+    {
+        for(int j=0; j<img->numCols; j++)
+        {
+            printf("[%d][%d][0]: %c %x\n", i, j, img->imgArr[i][j].rgb[0], img->imgArr[i][j].rgb[0]);
+            printf("[%d][%d][1]: %c %x\n", i, j, img->imgArr[i][j].rgb[1], img->imgArr[i][j].rgb[1]);
+            printf("[%d][%d][2]: %c %x\n", i, j, img->imgArr[i][j].rgb[2], img->imgArr[i][j].rgb[2]);
+        }
+    }
 }
 
 void readImg(char * imgFilePath, ppm * outImg)
@@ -112,7 +123,7 @@ void writeAscii(ppm * img, char * path, FILE * file)
 }
 
 void writeBinary(ppm * img, char * path, FILE * file) {
-
+    fwrite(img->imgArr[0],  sizeof(RGB), img->numRows*img->numCols, file);
 }
 
 void writeImg(ppm * inImg, char * path) {
@@ -155,9 +166,20 @@ void invertColors(ppm * inImg, ppm  * outImg) {
 
 void scaleImg(ppm * inImg, ppm * outImg, int scalePer) {
 
-    int numRowsNew = inImg->numRows*(scalePer/100);
-    int numColsNew = inImg->numCols*(scalePer/100);
+    int numRowsNew, numColsNew;
+
+    if(scalePer >= 100)
+    {
+        numRowsNew = inImg->numRows*(scalePer/100);
+        numColsNew = inImg->numCols*(scalePer/100);
+    }else{
+        numRowsNew = (int)round(inImg->numRows*scalePer/100);
+        numColsNew = (int)round(inImg->numCols*scalePer/100);
+    }
     
+    printf("numRowsNew: %d\n", numRowsNew);
+    printf("numColsNew: %d\n", numColsNew);
+        
     //Copying specifications
     copySpecs(inImg, outImg);
 

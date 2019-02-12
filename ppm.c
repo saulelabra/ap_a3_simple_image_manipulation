@@ -39,7 +39,7 @@ void asciiRead (ppm * img, FILE * source) {
 
 void binaryRead(ppm * img, FILE * source) {
     //Reading ppm contents
-    fread(img->imgArr[0], sizeof(RGB), img->numRows * img->numCols, source);
+    fread(img->imgArr[0], sizeof(RGB), img->numRows*img->numCols, source);
     printf("stored in memory\n");
 
     for(int i=0; i<img->numRows; i++)
@@ -123,7 +123,7 @@ void writeAscii(ppm * img, char * path, FILE * file)
 }
 
 void writeBinary(ppm * img, char * path, FILE * file) {
-
+    fwrite(img->imgArr[0],  sizeof(RGB), img->numRows*img->numCols, file);
 }
 
 void writeImg(ppm * inImg, char * path) {
@@ -205,5 +205,5 @@ void freeppm(ppm * img)
         free(img->imgArr[i]);
     }
 
-    free(*img->imgArr);
+    free(img->imgArr);
 }

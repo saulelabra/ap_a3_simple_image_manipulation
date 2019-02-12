@@ -26,19 +26,19 @@ void allocateMem(ppm * img);
 
 void asciiRead (ppm * img, FILE * source);
 
-void binaryRead(ppm * img, FILE * source);//por componer
+void binaryRead(ppm * img, FILE * source);
 
 void readImg(char * imgFilePath, ppm * outImg);
 
 void writeAscii(ppm * img, char * path, FILE * file);
 
-void writeBinary(ppm * img, char * path, FILE * file);//Por hacer
+void writeBinary(ppm * img, char * path, FILE * file);
 
 void writeImg(ppm * inImg, char * path);
 
 void invertColors(ppm * inImg, ppm  * outImg);
 
-void scaleImg(ppm * inImg, ppm * outImg, int scalePer);//error de memoria
+void scaleImg(ppm * inImg, ppm * outImg, int scalePer);
 
 void freeppm(ppm * img);
 

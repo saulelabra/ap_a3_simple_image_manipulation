@@ -53,10 +53,14 @@ int main(int argc, char *argv[]){
         scaleImg(&img1, &img2, scaleFactor);
     }
 
-    writeImg(&img2, output_file);
+    if(invertFlag != 0 || invertFlag != 0)
+    {
+        writeImg(&img2, output_file);
+        freeppm(&img2);
+    }
 
     freeppm(&img1);
-    freeppm(&img2);
+    
 
     return 0;
 }
