@@ -38,7 +38,7 @@ void writeImg(ppm * inImg, char * path);
 
 void invertColors(ppm * inImg, ppm  * outImg);
 
-void scaleImg(ppm * inImg, ppm * outImg, int scalePer);//error de memoria, falta scaleDown
+void scaleImg(ppm * inImg, ppm * outImg, int scalePer);//error de memoria
 
 void freeppm(ppm * img);
 
